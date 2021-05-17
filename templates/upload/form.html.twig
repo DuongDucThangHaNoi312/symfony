@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Form Upload{% endblock %}
+{% block head %}
+    <style type="text/css">
+        .important { text-align: center; color: red }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+
+    <h1 class="important">
+        Upload
+    </h1>
+
+    {{ form_start(form) }}
+
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>Image</th>
+
+        </tr>
+        <tr>
+
+            <td>
+                {{ form_widget (form.title) }}
+            </td>
+            <td>
+                {{ form_widget (form.image) }}
+            </td>
+        </tr>
+    </table>
+
+    {{ form_end(form) }}
+
+{% endblock %}

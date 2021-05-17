@@ -1,0 +1,28 @@
+Twig 
+-- {%  Để thực thi câu lệnh  %}
+--{{ để xuất ra kết quả 1 biểu thức }}
+--Sử dụng dấu chấm ( .) để truy cập các thuộc tính của một biến (các phương thức hoặc thuộc tính của một đối tượng PHP hoặc các mục của một mảng PHP):
+{{ a.b }} a là đối tượng với b là thuốc tính hay phương thức
+              a là mảng b là key trong a
+
+
+-- _self: tham chiếu đến tên mẫu hiện tại;
+-- _context: tham chiếu đến bối cảnh hiện tại;
+-- _charset: tham chiếu đến bộ ký tự hiện tại
+--Đặt biến Bạn có thể gán giá trị cho các biến bên trong khối mã.
+{% set foo = 'foo' %}
+{% set foo = [1, 2] %}
+{% set foo = {'foo': 'bar'} %}
+--Các hàm có thể được gọi để tạo nội dung. Các hàm được gọi theo tên của chúng, theo sau là dấu ngoặc đơn ( ()) và có thể có đối số.
+{% for i in range(0, 3) %}
+    {{ i }},
+{% endfor %} gọi đến hàm range
+
+--Các biến có thể được sửa đổi bằng bộ lọc . Các bộ lọc được phân tách khỏi biến bằng ký hiệu ống ( |). 
+{{ data|convert_encoding(from='iso-2022-jp', to='UTF-8') }}
+--Các đối số được đặt tên cũng cho phép bạn bỏ qua một số đối số mà bạn không muốn thay đổi giá trị mặc định:
+{{ "now"|date('d/m/Y H:i', timezone="Europe/Paris") }}
+-- lọc
+  {% if categorydetail.name starts with 'a' %}  name bắt đầu chữ a thì hiển thị
+ độ dài của  name > 9 thì hiển thị#}
+           {% if categorydetail.name|length > 9 %}

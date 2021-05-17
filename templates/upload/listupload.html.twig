@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Danh mục Upload {% endblock %}
+
+{% block head %}
+    <style type="text/css">
+        .important { text-align: center; color: red }
+        .boder{ border: 1px solid red ;}
+
+    </style>
+
+
+{% endblock %}
+
+
+{% block body %}
+
+    <h1 class="important">Bảng Upload </h1>
+
+    <table   class="table"  >
+
+        <tr class="bg-primary">
+            <th >ID</th>
+            <th >Tile</th>
+            <th >Image</th>
+        </tr>
+        {% for uploadDetail in upload %}
+        <tr>
+            <td>     {{ uploadDetail.id }} </td>
+            <td>     {{ uploadDetail.title  }} </td>
+            <td>     <div class="img">   <img src=" {{ '/uploads/' ~  uploadDetail.image }}" height="80px" width="80px" class="boder"> </div></td>
+
+        </tr>
+        {% endfor %}
+
+    </table>
+
+
+    </div>
+
+
+
+{% endblock %}

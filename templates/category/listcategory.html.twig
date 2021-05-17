@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Danh mục sản phẩm{% endblock %}
+
+{% block head %}
+    <style type="text/css">
+        .important { text-align: center; color: red }
+    </style>
+
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+{% endblock %}
+
+
+{% block body %}
+    <div class="example-wrapper">
+
+    <h1 class="important">Bảng Categoies </h1>
+    <h2>
+        Tổng Category : {{  category.getTotalItemCount() }}
+
+    </h2>
+    <table   class="table"  >
+
+        <tr class="bg-primary">
+            <th >ID</th>
+            <th >Name</th>
+            <th >Delete</th>
+            <th >Update</th>
+        </tr>
+
+
+{#        nếu số category nhiều hơn 4 thì show ra#}
+{#    {% if category|length > 4 %}#}
+
+
+
+        {% for categorydetail in category %}
+
+            <tr>
+{#                độ dài của  name > 4 thì hiển thị#}
+{#               {% if categorydetail.name|length > 9 %}#}
+
+
+{#                name bắt đầu là chữ a thì hiển thi#}
+{#                {% if categorydetail.name starts with 'a' %}#}
+
+
+
+                    <td> {{ categorydetail.id }} </td>
+                   <td> {{ categorydetail.name  }} </td>
+                   <td><button class="btn btn-danger" type="submit" ><a style="text-decoration: none ;color: black " href="{{ path ('categoryDelete',{'id':categorydetail.id}) }}">Delete</a></button></td>
+                   <td><button class="btn btn-warning" type="submit" ><a style="text-decoration: none ;color: black" href="{{ path ('categoryEdit',{'id':categorydetail.id})}}">Edit</a></button></td>
+
+{#               {% endif %}#}
+
+            </tr>
+        {% endfor %}
+{#        {% endif %}#}
+
+    </table>
+
+    {#    phân trang#}
+    <div>{{ knp_pagination_render(category) }}</div>
+
+
+   <button class="btn btn-success" > <a  style="text-decoration: none ;color:black;" href="{{ path ('home')}}">Return</a></button></td>
+
+    </div>
+
+
+
+{% endblock %}
