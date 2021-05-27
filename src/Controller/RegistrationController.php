@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
-
 class RegistrationController extends AbstractController
 {
     /**
@@ -21,7 +21,7 @@ class RegistrationController extends AbstractController
      * @return Response
      */
     #[Route('/registration', name: 'registration')]
-    public function index(Request $request , UserPasswordEncoderInterface $passwordEncoder): Response
+    public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
 
         $form = $this->createFormBuilder()

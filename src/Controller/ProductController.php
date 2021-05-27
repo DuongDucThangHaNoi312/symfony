@@ -20,15 +20,15 @@ class ProductController extends AbstractController
      * @return Response
      */
     #[Route('/createProduct', name: 'product')]
-        public function create(Request  $request): Response
+    public function create(Request $request): Response
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-        $x = $this->getDoctrine()->getManager();
-        $x->persist($product);
-        $x->flush();
+            $x = $this->getDoctrine()->getManager();
+            $x->persist($product);
+            $x->flush();
             return $this->redirect($this->generateUrl('productList'));
         }
         return $this->render('product/create.html.twig', [
@@ -56,9 +56,9 @@ class ProductController extends AbstractController
 //            . ' and new category with id: ' . $category->getId()
 //        );
 
-    public  function __toString()
+    public function __toString()
     {
-       return $this->name;
+        return $this->name;
     }
 
     /**
@@ -67,11 +67,11 @@ class ProductController extends AbstractController
      * @return Response
      */
     #[Route('/products', name: 'productList')]
-    public function showAllProduct(Request $request,PaginatorInterface $paginator): Response
+    public function showAllProduct(Request $request, PaginatorInterface $paginator): Response
     {
         $productRepo = $this->getDoctrine()->getRepository(persistentObject: Product::class);
         $products = $productRepo->findAll();
-        $products = $paginator ->paginate(
+        $products = $paginator->paginate(
             $products, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             5/*limit per page*/

@@ -19,8 +19,8 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name',TextType::class,[
-                'attr' =>[
+            ->add('name', TextType::class, [
+                'attr' => [
                     'placeholder' => 'Enter name product',
                 ],
                 'constraints' => [
@@ -29,35 +29,34 @@ class ProductType extends AbstractType
                     new Length([
                         'min' => 10
                     ]),
-                    ],
-                'required'=>false,
+                ],
+                'required' => false,
 
             ])
-            ->add('price',NumberType::class,[
+            ->add('price', NumberType::class, [
                 'attr' => [
                     'placeholder' => 'Enter Price Product',
                     'title' => 'This is price of Product'
                 ],
-                'constraints'=> [
+                'constraints' => [
                     new NotBlank()
                 ],
-                'required'=>false,
+                'required' => false,
             ])
-
-            ->add('category',EntityType::class,[
+            ->add('category', EntityType::class, [
                 'class' => Category::class,
-                 'required' => false,
-                 'attr' => [
+                'required' => false,
+                'attr' => [
                     'class' => 'select2',
-                 ],
-                 'query_builder' => function(EntityRepository $er){
-                return $er->createQueryBuilder('n')->orderBy('n.name','ASC');
-                 }
+                ],
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('n')->orderBy('n.name', 'ASC');
+                }
             ])
-            ->add('ADD',SubmitType::class,[
-                'attr'=>[
-                    'class'=>'btn btn-primary ',
-                    'style'=>'margin-left : 300px'
+            ->add('ADD', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary ',
+                    'style' => 'margin-left : 300px'
 
                 ]
             ]);

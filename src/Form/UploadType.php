@@ -15,15 +15,14 @@ class UploadType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('image',FileType::class,[
-                'mapped'=>false
-                ])
-            ->add('Save',SubmitType::class,[
-                'attr'=>[
-                    'class'=>'btn btn-secondary ',
-                ]
+            ->add('image', FileType::class, [
+                'mapped' => false
             ])
-        ;
+            ->add('Save', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-secondary ',
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -30,7 +30,6 @@ class Category
     private $posts;
 
 
-
     /**
      * @ORM\OneToMany(targetEntity=Product::class, mappedBy="category")
      */
@@ -89,7 +88,8 @@ class Category
         return $this;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->name;
     }
 

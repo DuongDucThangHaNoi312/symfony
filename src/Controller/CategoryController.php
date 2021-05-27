@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Controller;
+
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Form\UpdateCategoryType;
@@ -18,9 +20,10 @@ class CategoryController extends AbstractController
 
     #[Route('/home', name: 'home')]
     public function home(): Response
-   {
-    return $this->render('product/Home.html.twig');
+    {
+        return $this->render('product/Home.html.twig');
     }
+
     /**
      * @param Request $request
      * @return Response
@@ -28,7 +31,7 @@ class CategoryController extends AbstractController
     #[Route('/createCategory', name: 'category')]
     public function create(Request $request): Response
     {
-        $category= new Category();
+        $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -47,11 +50,11 @@ class CategoryController extends AbstractController
      * @return Response
      */
     #[Route('/categories', name: 'CategoryList')]
-    public function showAllProduct(Request $request,PaginatorInterface $paginator): Response
+    public function showAllProduct(Request $request, PaginatorInterface $paginator): Response
     {
         $categoryRepo = $this->getDoctrine()->getRepository(persistentObject: Category::class);
         $category = $categoryRepo->findAll();
-        $category = $paginator ->paginate(
+        $category = $paginator->paginate(
             $category, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
             5/*limit per page*/
@@ -71,7 +74,7 @@ class CategoryController extends AbstractController
         $id = $request->get('id');
         $categoryDelete = $this->getDoctrine()->getRepository(Category::class)->find($id);
         $category = $this->getDoctrine()->getManager();
-        $category ->remove($categoryDelete);
+        $category->remove($categoryDelete);
         $category->flush();
         return $this->redirect($this->generateUrl('CategoryList'));
     }

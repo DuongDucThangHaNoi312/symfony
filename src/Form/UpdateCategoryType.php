@@ -14,14 +14,13 @@ class UpdateCategoryType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('ADD',SubmitType::class,[
-                'attr'=>[
-                    'class'=>'btn btn-primary ',
-                    'style'=>'margin-left : 300px'
+            ->add('ADD', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary ',
+                    'style' => 'margin-left : 300px'
 
                 ]
-            ]);
-        ;
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver)

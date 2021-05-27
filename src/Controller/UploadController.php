@@ -18,16 +18,16 @@ class UploadController extends AbstractController
      * @return Response
      */
     #[Route('/upload', name: 'upload')]
-    public function Up(Request $request ,FileUploader $fileUploader): Response
+    public function Up(Request $request, FileUploader $fileUploader): Response
     {
         $upload = new Upload();
         $form = $this->createForm(UploadType::class, $upload);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-         $x = $this->getDoctrine()->getManager();
+            $x = $this->getDoctrine()->getManager();
             $file = $request->files->get('upload')['image'];
             if ($file) {
-               $filename = $fileUploader->uploadFile($file);
+                $filename = $fileUploader->uploadFile($file);
                 $upload->setImage($filename);
                 $x->persist($upload);
                 $x->flush();
@@ -37,7 +37,6 @@ class UploadController extends AbstractController
         return $this->render('upload/form.html.twig', [
             'form' => $form->createView()
         ]);
-
 
 
     }

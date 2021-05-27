@@ -17,16 +17,16 @@ class UpdateProductType extends AbstractType
         $builder
             ->add('name')
             ->add('price')
-            ->add('category',EntityType::class,[
-                'class'=>Category::class,
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
                 'attr' => [
                     'class' => 'select2'
                 ]
             ])
-            ->add('ADD',SubmitType::class,[
-                'attr'=>[
-                    'class'=>'btn btn-primary ',
-                    'style'=>'margin-left : 300px'
+            ->add('ADD', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary ',
+                    'style' => 'margin-left : 300px'
 
                 ]
             ]);
